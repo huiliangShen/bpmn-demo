@@ -19,7 +19,8 @@ module.exports = {
 	},
 	output: {
 		filename: "js/[name].[chunkhash:7].js",
-		path: path.resolve(__dirname, "../build")
+		path: path.resolve(__dirname, "../build/"),
+		publicPath: ''
 		/* library: 'xxx', // 打包名称，这个如果子应用定义好，要告知主应用，因为这个和主应用注册子应用的名称一致
 		libraryTarget: "umd",
 		jsonpFunction: `webpackJsonp_baas`,
