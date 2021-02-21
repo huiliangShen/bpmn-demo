@@ -6,7 +6,7 @@ module.exports = {
 		compress: true,
 		proxy: {
 			"/api": {
-				target: "http://10.10.20.240:11000/api",
+				target: "http://192.168.3.47:31080/engine-rest",
 				changeOrigin: true,
 				pathRewrite: {
 					"^/api": ""

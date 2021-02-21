@@ -6,5 +6,7 @@ export default {
     'Error Start Event': '错误启动事件',
     'Escalation Start Event': '升级启动事件',
     'Compensation Start Event': '补偿启动事件',
-    'Activate the hand tool': '激活手动工具'
+    'Activate the hand tool': '激活手动工具',
+    'Open minimap': '小地图',
+    'Close minimap': '关闭'
 }
