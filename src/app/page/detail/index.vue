@@ -26,7 +26,7 @@ import {message} from 'ant-design-vue'
 // import demo from '@/app/apply.bpmn'
 import demo from '@/app/demo.bpmn'
 import {customTranslate} from '@/i18n'
-import customControlsModule from '@/app/custom/demo'
+// import customControlsModule from '@/app/custom/demo'
 
 import PreviewXml from '@/app/components/previewXml'
 import Publish from '@/app/components/publish'
@@ -53,7 +53,7 @@ export default {
           {
             translate: ['value', customTranslate]
           },
-          customControlsModule
+          // customControlsModule
         ],
         moddleExtensions: {
           camunda: camundaModdleDescriptor

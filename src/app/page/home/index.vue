@@ -25,28 +25,66 @@
         </template>
       </page-header>
       <a-card style="width: 100%">
-        <a-row :gutter="[16, 16]">
+        <!--<a-row :gutter="[16, 16]">
           <a-col class="gutter-row" :span="6" v-for="i in 10" :key="i">
             <div class="gutter-box">
               col-6
             </div>
           </a-col>
-        </a-row>
+        </a-row>-->
+        <Table :columns="columns" :data-source="data">
+          <a slot="source" slot-scope="text">{{ text || '-' }}</a>
+          <a slot="tenantId" slot-scope="text">{{ text || '-' }}</a>
+        </Table>
       </a-card>
     </div>
   </div>
 </template>
 
 <script>
-import {PageHeader} from 'ant-design-vue'
+import {PageHeader, Table} from 'ant-design-vue'
+import {getDeployment} from '@/service'
+
+const columns = [
+  {
+    title: 'id',
+    dataIndex: 'id',
+    key: 'id'
+  },
+  {
+    title: 'name',
+    dataIndex: 'name',
+    key: 'name'
+  },
+  {
+    title: 'source',
+    dataIndex: 'source',
+    key: 'source',
+    scopedSlots: {customRender: 'source'}
+  },
+  {
+    title: 'createTime',
+    dataIndex: 'deploymentTime',
+    key: 'deploymentTime'
+  },
+  {
+    title: 'tenantId',
+    dataIndex: 'tenantId',
+    key: 'tenantId',
+    scopedSlots: {customRender: 'tenantId'}
+  }
+]
 
 export default {
   components: {
-    PageHeader
+    PageHeader,
+    Table
   },
   data() {
     return {
-      lang: 'en'
+      lang: 'en',
+      columns,
+      data: []
     }
   },
   methods: {
@@ -57,6 +95,12 @@ export default {
       this.lang = e.target.value
       localStorage.setItem('locale', e.target.value)
     }
+  },
+  mounted() {
+    getDeployment({sortBy: 'deploymentTime', sortOrder: 'desc'})
+        .then((res) => {
+          this.data = res
+        })
   },
   created() {
     this.lang = localStorage.getItem('locale') || 'en'

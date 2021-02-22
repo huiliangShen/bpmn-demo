@@ -8,5 +8,6 @@ export default {
     'Compensation Start Event': '补偿启动事件',
     'Activate the hand tool': '激活手动工具',
     'Open minimap': '小地图',
-    'Close minimap': '关闭'
+    'Close minimap': '关闭',
+    'General': '通用'
 }

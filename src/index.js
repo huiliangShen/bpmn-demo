@@ -4,6 +4,7 @@ import router from './app/router'
 import store from './app/store'
 import './index.less'
 import {Button, Card, Row, Col, Radio, Form} from 'ant-design-vue'
+// bpmn css
 import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css'
 import 'bpmn-js/dist/assets/diagram-js.css'
 import 'bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css'
