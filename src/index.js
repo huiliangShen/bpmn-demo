@@ -9,6 +9,7 @@ import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css'
 import 'bpmn-js/dist/assets/diagram-js.css'
 import 'bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css'
 import 'diagram-js-minimap/assets/diagram-js-minimap.css'
+import './common/custom.less'
 
 Vue.config.productionTip = false
 Vue.use(Button)

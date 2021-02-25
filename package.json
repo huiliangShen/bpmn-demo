@@ -61,7 +61,9 @@
     "bpmn-js-properties-panel": "^0.40.0",
     "camunda-bpmn-moddle": "^5.0.0",
     "core-js": "3",
+    "diagram-js": "^7.2.0",
     "diagram-js-minimap": "^2.0.4",
+    "min-dash": "^3.5.2",
     "vue": "^2.6.12",
     "vue-router": "^3.4.9",
     "vuex": "^3.6.0"

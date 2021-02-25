@@ -89,7 +89,7 @@ export default {
   },
   methods: {
     goto() {
-      this.$router.push({path: '/detail/' + 1})
+      this.$router.push({path: '/detail/editor/' + 1})
     },
     langChange(e) {
       this.lang = e.target.value

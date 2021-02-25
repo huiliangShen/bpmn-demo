@@ -8,10 +8,8 @@
         从文件打开
       </div>
       <div class="detail-tool-preview" @click="previewXml()">预览</div>
-      <div class="detail-tool-publish" @click="publish()">发布</div>
     </div>
     <PreviewXml ref="previewXml"></PreviewXml>
-    <Publish ref="publish"></Publish>
   </div>
 </template>
 
@@ -25,29 +23,9 @@ import camundaModdleDescriptor from 'camunda-bpmn-moddle/resources/camunda.json'
 import {message} from 'ant-design-vue'
 // import demo from '@/app/apply.bpmn'
 import demo from '@/app/demo.bpmn'
-import {customTranslate} from '@/i18n'
 import customControlsModule from '@/app/custom/demo'
-import overrideModule from '@/app/custom/override'
 
 import PreviewXml from '@/app/components/previewXml'
-import Publish from '@/app/components/publish'
-
-/*
-const CustomContextPadProvider = function (contextPad) {
-  contextPad.registerProvider(this)
-  this.getContextPadEntries = function (element) {
-    // no entries, effectively disable the context pad
-    console.log(element)
-    return {}
-  }
-}
-
-CustomContextPadProvider.$inject = ['contextPad']
-
-const overrideModule = {
-  contextPadProvider: ['type', CustomContextPadProvider]
-}
-*/
 
 export default {
   name: 'detail',
@@ -68,10 +46,6 @@ export default {
           minimapModule,
           propertiesPanelModule,
           propertiesProviderModule,
-          {
-            translate: ['value', customTranslate]
-          },
-          overrideModule,
           customControlsModule
         ],
         moddleExtensions: {
@@ -85,17 +59,12 @@ export default {
       this.viewer.importXML(text).then((result) => {
         // const {warnings} = result
         // message.success(result)
-        // this.viewer.get('canvas').zoom('fit-vie//wport')
+        this.viewer.get('canvas').zoom('fit-viewport')
         this.viewer.get('minimap').close()
-        this.hiddenLogo()
       }).catch((err) => {
         // const {warnings, message} = err
         message.error(err.warnings + err.message)
       })
-    },
-    hiddenLogo() {
-      const logo = document.querySelector('.bjs-powered-by')
-      logo && (logo.style.display = 'none')
     },
     fileUpload(e) {
       const {target} = e
@@ -124,17 +93,6 @@ export default {
             this.$refs.previewXml.showModal(result.xml)
           })
           .catch((err) => message.error(err))
-    },
-    publish() {
-      this.viewer.saveXML({format: true})
-          .then((result) => {
-            this.xml = result.xml
-            this.$refs.publish.showModal(result.xml)
-          })
-          .catch((err) => message.error(err))
-    },
-    publishProcess() {
-      // createTask()
     }
   },
   mounted() {
@@ -144,8 +102,7 @@ export default {
     this.viewer = null
   },
   components: {
-    PreviewXml,
-    Publish
+    PreviewXml
   }
 }
 </script>

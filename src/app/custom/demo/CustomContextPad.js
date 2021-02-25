@@ -38,7 +38,7 @@ export default class CustomContextPad {
         return {
             'append.service-task': {
                 group: 'model',
-                className: 'bpmn-icon-service-task',
+                className: 'bpmn-icon-cute-task cute',
                 title: translate('Append ServiceTask'),
                 action: {
                     click: appendServiceTask,

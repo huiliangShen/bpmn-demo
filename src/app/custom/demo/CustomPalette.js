@@ -1,8 +1,11 @@
 export default class CustomPalette {
     constructor(create, elementFactory, palette, translate) {
+        console.log('侧栏', arguments)
         this.create = create
         this.elementFactory = elementFactory
         this.translate = translate
+        // this.palette = palette
+        // this.paltteList = Object.keys(palette._entries)
 
         palette.registerProvider(this)
     }
@@ -21,10 +24,10 @@ export default class CustomPalette {
         }
 
         return {
-            'create.service-task': {
+             'create.cute-task': {
                 group: 'activity',
-                className: 'bpmn-icon-service-task',
-                title: translate('Create ServiceTask'),
+                className: 'bpmn-icon-cute-task cute',
+                title: translate('Create CuteTask'),
                 action: {
                     dragstart: createServiceTask,
                     click: createServiceTask
