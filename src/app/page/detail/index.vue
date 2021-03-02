@@ -20,7 +20,8 @@
 import BpmnModeler from 'bpmn-js/lib/Modeler'
 import minimapModule from 'diagram-js-minimap'
 import propertiesPanelModule from 'bpmn-js-properties-panel'
-import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda'
+// import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda'
+import propertiesProviderModule from '../../custom/provider'
 import camundaModdleDescriptor from 'camunda-bpmn-moddle/resources/camunda.json'
 import {message} from 'ant-design-vue'
 // import demo from '@/app/apply.bpmn'
@@ -67,12 +68,13 @@ export default {
         additionalModules: [
           minimapModule,
           propertiesPanelModule,
-          propertiesProviderModule,
+          // propertiesProviderModule,
           {
             translate: ['value', customTranslate]
           },
           overrideModule,
-          customControlsModule
+          customControlsModule,
+          propertiesProviderModule
         ],
         moddleExtensions: {
           camunda: camundaModdleDescriptor
