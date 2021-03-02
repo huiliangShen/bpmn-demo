@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@page/home/index'
 import Detail from '@page/detail/index'
-import Detail2 from '@page/detail2/index'
+// import Detail2 from '@page/detail2/index'
 // import Store from '@page/store/index'
 // import My from '@page/my/index'
 
@@ -24,10 +24,6 @@ export const commonRouter = [
     {
         path: '/detail/editor/:id',
         component: Detail
-    },
-    {
-        path: '/detail/customElement',
-        component: Detail2
     }
 ]
 
