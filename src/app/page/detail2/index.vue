@@ -18,14 +18,16 @@
 import BpmnModeler from 'bpmn-js/lib/Modeler'
 import minimapModule from 'diagram-js-minimap'
 import propertiesPanelModule from 'bpmn-js-properties-panel'
-import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda'
+// import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda'
+import propertiesProviderModule from '../../custom/provider'
 import camundaModdleDescriptor from 'camunda-bpmn-moddle/resources/camunda.json'
 import {message} from 'ant-design-vue'
 // import demo from '@/app/apply.bpmn'
 import demo from '@/app/demo.bpmn'
-import customControlsModule from '@/app/custom/demo'
+// import customControlsModule from '@/app/custom/demo'
 
 import PreviewXml from '@/app/components/previewXml'
+// import CamundaPropertiesProvider from '../../custom/provider/CamundaPropertiesProvider'
 
 export default {
   name: 'detail',
@@ -45,8 +47,8 @@ export default {
         additionalModules: [
           minimapModule,
           propertiesPanelModule,
-          propertiesProviderModule,
-          customControlsModule
+          // customControlsModule,
+          propertiesProviderModule
         ],
         moddleExtensions: {
           camunda: camundaModdleDescriptor
@@ -61,6 +63,7 @@ export default {
         // message.success(result)
         this.viewer.get('canvas').zoom('fit-viewport')
         this.viewer.get('minimap').close()
+        this.addModelerListener()
       }).catch((err) => {
         // const {warnings, message} = err
         message.error(err.warnings + err.message)
@@ -93,6 +96,33 @@ export default {
             this.$refs.previewXml.showModal(result.xml)
           })
           .catch((err) => message.error(err))
+    },
+    addModelerListener() {
+      // 监听 modeler
+      const bpmnjs = this.viewer
+      const that = this
+      const events = ['shape.added', 'shape.move.end', 'shape.removed']
+      events.forEach(function (event) {
+        that.viewer.on(event, (e) => {
+          const elementRegistry = bpmnjs.get('elementRegistry')
+          const shape = e.element ? elementRegistry.get(e.element.id) : e.shape
+          console.log(shape)
+          if (event === 'shape.added') {
+            console.log('新增了shape')
+          } else if (event === 'shape.move.end') {
+            console.log('移动了shape')
+          } else if (event === 'shape.removed') {
+            console.log('删除了shape')
+          }
+        })
+      })
+
+      this.viewer.on('commandStack.changed', () => {
+        this.viewer.saveXML({format: true})
+            .then(({xml}) => {
+              console.log(xml)
+            })
+      })
     }
   },
   mounted() {

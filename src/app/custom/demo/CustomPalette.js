@@ -18,7 +18,8 @@ export default class CustomPalette {
         } = this
 
         function createServiceTask(event) {
-            const shape = elementFactory.createShape({type: 'bpmn:ServiceTask'})
+            // 这里只是一个task，并非完全的自定义元素
+            const shape = elementFactory.createShape({type: 'bpmn:Task'})
 
             create.start(event, shape)
         }

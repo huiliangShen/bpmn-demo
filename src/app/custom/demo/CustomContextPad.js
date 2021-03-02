@@ -21,7 +21,7 @@ export default class CustomContextPad {
 
         function appendServiceTask(event, element) {
             if (autoPlace) {
-                const shape = elementFactory.createShape({type: 'bpmn:ServiceTask'})
+                const shape = elementFactory.createShape({type: 'bpmn:Task'})
 
                 autoPlace.append(element, shape)
             } else {
@@ -30,16 +30,16 @@ export default class CustomContextPad {
         }
 
         function appendServiceTaskStart(event) {
-            const shape = elementFactory.createShape({type: 'bpmn:ServiceTask'})
+            const shape = elementFactory.createShape({type: 'bpmn:Task'})
 
             create.start(event, shape, element)
         }
 
         return {
-            'append.service-task': {
+            'append.cute-task': {
                 group: 'model',
                 className: 'bpmn-icon-cute-task cute',
-                title: translate('Append ServiceTask'),
+                title: translate('Append CuteTask'),
                 action: {
                     click: appendServiceTask,
                     dragstart: appendServiceTaskStart
