@@ -100,7 +100,7 @@ PaletteProvider.prototype.getPaletteEntries = function (element) {
     assign(actions, {
         'hand-tool': {
             group: 'tools',
-            className: 'bpmn-icon-hand-tool',
+            className: 'iconfont icon-handheart', // 'bpmn-icon-hand-tool',
             title: translate('Activate the hand tool'),
             action: {
                 click: function (event) {
@@ -130,7 +130,7 @@ PaletteProvider.prototype.getPaletteEntries = function (element) {
         },
         'global-connect-tool': {
             group: 'tools',
-            className: 'bpmn-icon-connection-multi',
+            className: 'iconfont icon-Linegraph', // 'bpmn-icon-connection-multi',
             title: translate('Activate the global connect tool'),
             action: {
                 click: function (event) {
@@ -143,17 +143,17 @@ PaletteProvider.prototype.getPaletteEntries = function (element) {
             separator: true
         },
         'create.start-event': createAction(
-            'bpmn:StartEvent', 'event', 'bpmn-icon-start-event-none',
+            'bpmn:StartEvent', 'event', 'iconfont icon-circle',
             translate('Create StartEvent')
-        ),
+        ), // 'bpmn-icon-start-event-none'
         'create.intermediate-event': createAction(
             'bpmn:IntermediateThrowEvent', 'event', 'bpmn-icon-intermediate-event-none',
             translate('Create Intermediate/Boundary Event')
         ),
-        /* 'create.end-event': createAction(
-            'bpmn:EndEvent', 'event', 'bpmn-icon-end-event-none',
+         'create.end-event': createAction(
+            'bpmn:EndEvent', 'event', 'iconfont icon-yuan_',
             translate('Create EndEvent')
-        ), */
+        ), // 'bpmn-icon-end-event-none'
         'create.exclusive-gateway': createAction(
             'bpmn:ExclusiveGateway', 'gateway', 'bpmn-icon-gateway-none',
             translate('Create Gateway')
@@ -172,7 +172,7 @@ PaletteProvider.prototype.getPaletteEntries = function (element) {
         ),
         'create.subprocess-expanded': {
             group: 'activity',
-            className: 'bpmn-icon-subprocess-expanded',
+            className: 'iconfont icon-bag', // 'bpmn-icon-subprocess-expanded',
             title: translate('Create expanded SubProcess'),
             action: {
                 dragstart: createSubprocess,

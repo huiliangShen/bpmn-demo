@@ -436,3 +436,4 @@ function isEventType(eventBo, type, definition) {
 
     return isType && isDefinition;
 }
+

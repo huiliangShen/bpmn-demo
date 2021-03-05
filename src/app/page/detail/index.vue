@@ -8,7 +8,7 @@
         从文件打开
       </div>
       <div class="detail-tool-preview" @click="previewXml()">预览</div>
-      <div class="detail-tool-publish" @click="publish()">发布</div>
+      <div class="detail-tool-publish" @click="publish()"><span class="iconfont icon-handheart"></span>发布</div>
     </div>
     <PreviewXml ref="previewXml"></PreviewXml>
     <Publish ref="publish"></Publish>
@@ -22,7 +22,7 @@ import minimapModule from 'diagram-js-minimap'
 import propertiesPanelModule from 'bpmn-js-properties-panel'
 // import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda'
 import propertiesProviderModule from '../../custom/provider'
-import camundaModdleDescriptor from 'camunda-bpmn-moddle/resources/camunda.json'
+import camundaModdleDescriptor from '../../custom/camunda.json'
 import {message} from 'ant-design-vue'
 // import demo from '@/app/apply.bpmn'
 import demo from '@/app/demo.bpmn'
@@ -90,6 +90,12 @@ export default {
         // this.viewer.get('canvas').zoom('fit-vie//wport')
         this.viewer.get('minimap').close()
         this.hiddenLogo()
+        this.viewer.on('commandStack.changed', () => {
+          this.viewer.saveXML({format: true})
+              .then(({xml}) => {
+                console.log(xml)
+              })
+        })
       }).catch((err) => {
         // const {warnings, message} = err
         message.error(err.warnings + err.message)
@@ -138,6 +144,9 @@ export default {
     publishProcess() {
       // createTask()
     }
+  },
+  beforeDestroy() {
+    this.viewer.destroy()
   },
   mounted() {
     this.init()

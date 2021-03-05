@@ -3,7 +3,7 @@ import entryFactory from 'bpmn-js-properties-panel/lib/factory/EntryFactory'
 import cmdHelper from 'bpmn-js-properties-panel/lib/helper/CmdHelper'
 import {is, getBusinessObject} from 'bpmn-js/lib/util/ModelUtil'
 
-module.exports = function (group, element, translate) {
+export default function (group, element, translate) {
     // 判断是否是正常的bpmn对象
     var bo = getBusinessObject(element)
 
@@ -13,18 +13,18 @@ module.exports = function (group, element, translate) {
 
     if (is(element, 'bpmn:Process') || is(element, 'bpmn:Participant') && bo.get('processRef')) {
         var versionTagEntry = entryFactory.textField(translate, {
-            id: 'versionTag',
-            label: translate('Version Tag'),
-            modelProperty: 'versionTag'
+            id: 'customTag',
+            label: translate('Custom Tag'),
+            modelProperty: 'customTag'
         })
 
         // in participants we have to change the default behavior of set and get
         if (is(element, 'bpmn:Participant')) {
             versionTagEntry.get = function (element) {
                 var processBo = bo.get('processRef')
-
+                // console.log(processBo.get('camunda:customTag'))
                 return {
-                    versionTag: processBo.get('camunda:versionTag')
+                    customTag: processBo.get('camunda:customTag')
                 }
             }
 
@@ -32,7 +32,7 @@ module.exports = function (group, element, translate) {
                 var processBo = bo.get('processRef')
 
                 return cmdHelper.updateBusinessObject(element, processBo, {
-                    'camunda:versionTag': values.versionTag || undefined
+                    'camunda:customTag': values.customTag || undefined
                 })
             }
         }

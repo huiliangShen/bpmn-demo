@@ -48,6 +48,10 @@ import elementTemplateOutputParametersProps
     from 'bpmn-js-properties-panel/lib/provider/camunda/element-templates/parts/OutputParametersProps'
 import {getTemplateId} from 'bpmn-js-properties-panel/lib/provider/camunda/element-templates/Helper'
 
+import demoPorps from './part/demoProps'
+import demoSelectPorps from './part/demoSelectProps'
+import testDocumentationProps from './part/testDocumentationProps'
+
 // Input/Output
 import inputParameters from 'bpmn-js-properties-panel/lib/provider/camunda/parts/InputParametersProps'
 import outputParameters from 'bpmn-js-properties-panel/lib/provider/camunda/parts/OutputParametersProps'
@@ -235,6 +239,8 @@ function createGeneralTabGroups(
     processProps(generalGroup, element, translate, getProcessOptions(element))
     // 当前流程信息内
     versionTag(generalGroup, element, translate)
+    demoPorps(generalGroup, element, translate)
+    demoSelectPorps(generalGroup, element, translate)
     // 复选框
     executableProps(generalGroup, element, translate)
     elementTemplateChooserProps(generalGroup, element, elementTemplates, translate)
@@ -313,6 +319,13 @@ function createGeneralTabGroups(
     }
     documentationProps(documentationGroup, element, bpmnFactory, translate)
 
+    var MyTestGroup = {
+        id: 'testDocumentation',
+        label: translate('testDocumentation'),
+        entries: []
+    }
+    testDocumentationProps(MyTestGroup, element, bpmnFactory, translate)
+
     var groups = []
     groups.push(generalGroup)
     groups.push(detailsGroup)
@@ -324,6 +337,7 @@ function createGeneralTabGroups(
     groups.push(historyTimeToLiveGroup)
     groups.push(tasklistGroup)
     groups.push(documentationGroup)
+    groups.push(MyTestGroup)
 
     return groups
 }
