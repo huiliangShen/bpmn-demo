@@ -55,7 +55,21 @@ export default {
   data() {
     return {
       xml: '',
-      file: null
+      file: null,
+      options: [
+        {
+          value: 1,
+          name: 'wo1'
+        },
+        {
+          value: 2,
+          name: 'de2'
+        },
+        {
+          value: 3,
+          name: 'tian3'
+        }
+      ]
     }
   },
   methods: {
@@ -90,10 +104,42 @@ export default {
         // this.viewer.get('canvas').zoom('fit-vie//wport')
         this.viewer.get('minimap').close()
         this.hiddenLogo()
-        this.viewer.on('commandStack.changed', () => {
+        const bpmnjs = this.viewer
+        const that = this
+        const events = ['shape.added', 'shape.move.end', 'shape.removed', 'element.click', 'element.changed', 'element.updateAttachment']
+        events.forEach(function (event) {
+          that.viewer.on(event, (e) => {
+            const elementRegistry = bpmnjs.get('elementRegistry')
+            const shape = e.element ? elementRegistry.get(e.element.id) : e.shape
+            console.log('operation', event, shape)
+            if ((event === 'element.changed' || event === 'element.click') && shape.type === 'bpmn:ServiceTask' && shape.businessObject.type === 'external') {
+              const selected = shape.businessObject.topic || ''
+              const selectDom = document.getElementById('camunda-externalTopic-select')
+              let str = ''
+              that.options.forEach((option) => {
+                if (selected === option.value.toString()) {
+                  str += `<option value="${option.value}" selected>${option.name}</option>`
+                } else {
+                  str += `<option value="${option.value}">${option.name}</option>`
+                }
+              })
+              str += !selected ? '<option value="" selected></option>' : '<option value=""></option>'
+              selectDom.innerHTML = str
+            }
+           /* if (event === 'shape.added') {
+              console.log('新增了shape')
+            } else if (event === 'shape.move.end') {
+              console.log('移动了shape')
+            } else if (event === 'shape.removed') {
+              console.log('删除了shape')
+            } */
+          })
+        })
+        this.viewer.on('commandStack.changed', (e) => {
           this.viewer.saveXML({format: true})
               .then(({xml}) => {
-                console.log(xml)
+                console.info(xml)
+                console.log('test', e)
               })
         })
       }).catch((err) => {

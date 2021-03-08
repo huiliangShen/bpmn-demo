@@ -16,7 +16,7 @@ export default class CustomRender extends BaseRenderer {
     }
 
     drawShape(parent, shape) {
-        console.log(shape)
+        // console.log(shape)
         if (shape.type === 'bpmn:Task') {
             // 核心函数就是绘制shape
             const catGfx = svgCreate('image', {

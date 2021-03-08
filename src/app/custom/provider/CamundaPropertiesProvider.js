@@ -17,7 +17,8 @@ import nameProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/NameProp
 import executableProps from 'bpmn-js-properties-panel/lib/provider/bpmn/parts/ExecutableProps'
 
 // camunda properties
-import serviceTaskDelegateProps from 'bpmn-js-properties-panel/lib/provider/camunda/parts/ServiceTaskDelegateProps'
+// import serviceTaskDelegateProps from 'bpmn-js-properties-panel/lib/provider/camunda/parts/ServiceTaskDelegateProps'
+import serviceTaskDelegateProps from './part/serviceTaskProps'
 import userTaskProps from 'bpmn-js-properties-panel/lib/provider/camunda/parts/UserTaskProps'
 import asynchronousContinuationProps
     from 'bpmn-js-properties-panel/lib/provider/camunda/parts/AsynchronousContinuationProps'

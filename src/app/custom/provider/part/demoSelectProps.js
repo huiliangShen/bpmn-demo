@@ -3,13 +3,23 @@ import entryFactory from 'bpmn-js-properties-panel/lib/factory/EntryFactory'
 import cmdHelper from 'bpmn-js-properties-panel/lib/helper/CmdHelper'
 import {is, getBusinessObject} from 'bpmn-js/lib/util/ModelUtil'
 
+var DEFAULT_OPTIONS = []
+
+function getVal() {
+    return new Promise(resolve => {
+        resolve([
+            {value: 'class', name: translate('Java Class')},
+            {value: 'expression', name: translate('Expression')},
+            {value: 'delegateExpression', name: translate('Delegate Expression')},
+            {value: ''}
+        ])
+    })
+}
+
+getVal().then(res => DEFAULT_OPTIONS = res)
+
 export default function (group, element, translate) {
-    var DEFAULT_OPTIONS = [
-        {value: 'class', name: translate('Java Class')},
-        {value: 'expression', name: translate('Expression')},
-        {value: 'delegateExpression', name: translate('Delegate Expression')},
-        {value: ''}
-    ]
+
     var selectOptions = DEFAULT_OPTIONS.concat([]);
     // 判断是否是正常的bpmn对象
     var bo = getBusinessObject(element)
