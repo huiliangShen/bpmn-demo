@@ -196,6 +196,7 @@ export default {
 
   .properties-panel-parent {
     overflow: auto;
+    width: 320px;
   }
 }
 </style>
