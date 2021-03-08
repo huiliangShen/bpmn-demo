@@ -239,7 +239,7 @@ function createGeneralTabGroups(
     processProps(generalGroup, element, translate, getProcessOptions(element))
     // 当前流程信息内
     versionTag(generalGroup, element, translate)
-    demoPorps(generalGroup, element, translate)
+    // demoPorps(generalGroup, element, translate)
     demoSelectPorps(generalGroup, element, translate)
     // 复选框
     executableProps(generalGroup, element, translate)
@@ -319,12 +319,12 @@ function createGeneralTabGroups(
     }
     documentationProps(documentationGroup, element, bpmnFactory, translate)
 
-    var MyTestGroup = {
+  /*  var MyTestGroup = {
         id: 'testDocumentation',
         label: translate('testDocumentation'),
         entries: []
     }
-    testDocumentationProps(MyTestGroup, element, bpmnFactory, translate)
+    testDocumentationProps(MyTestGroup, element, bpmnFactory, translate)*/
 
     var groups = []
     groups.push(generalGroup)
@@ -337,7 +337,7 @@ function createGeneralTabGroups(
     groups.push(historyTimeToLiveGroup)
     groups.push(tasklistGroup)
     groups.push(documentationGroup)
-    groups.push(MyTestGroup)
+    // groups.push(MyTestGroup)
 
     return groups
 }
